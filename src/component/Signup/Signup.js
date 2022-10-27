@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./../../Contexts/AuthProvider";
 
 const Signup = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setUserName } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -11,12 +11,15 @@ const Signup = () => {
     event.preventDefault();
 
     const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    console.log(name);
 
     try {
       const user = await createUser(email, password);
       console.log(user);
+      setUserName(name);
       navigate("/login");
     } catch (error) {
       console.error(error);

@@ -8,12 +8,14 @@ import { FaUserAlt } from "react-icons/fa";
 import { Image } from "react-bootstrap";
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, setUserName, userName } = useContext(AuthContext);
   const navigate = useNavigate();
+  console.log(userName);
 
   const handleLogout = async () => {
     try {
       const checkLogout = await logout();
+      setUserName(null);
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -31,12 +33,13 @@ const Header = () => {
             <Link to="/faq">FAQ</Link>
             <Link to="/blog">Blog</Link>
           </Nav>
-          <Nav>
-            {/* {user?.displayName && <Link to="/signup">Sign Up</Link>} */}
-            <Link to="/signup">Sign Up</Link>
-            {user?.displayName ? (
-              <div>
-                <p>{user.displayName}</p>
+
+          {/* {user?.displayName && <Link to="/signup">Sign Up</Link>} */}
+
+          {user?.displayName || userName ? (
+            <div style={{ display: "flex" }}>
+              <div style={{ display: "flex" }}>
+                <p>{user.displayName || userName}</p>
                 {user.photoURL ? (
                   <Image
                     style={{ height: "40px" }}
@@ -46,12 +49,17 @@ const Header = () => {
                 ) : (
                   <FaUserAlt></FaUserAlt>
                 )}
+              </div>
+              <div>
                 <button onClick={handleLogout}>Logout</button>
               </div>
-            ) : (
+            </div>
+          ) : (
+            <Nav>
+              <Link to="/signup">Sign Up</Link>
               <Link to="/login">Log in</Link>
-            )}
-          </Nav>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
