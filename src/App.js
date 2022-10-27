@@ -5,6 +5,8 @@ import Main from "./component/Main/Main";
 import Home from "./component/Home/Home";
 import Login from "./component/Login/Login";
 import Signup from "./component/Signup/Signup";
+import Faq from "./component/FaqQuestions/Faq";
+import Blog from "./component/Blog/Blog";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +25,14 @@ function App() {
         {
           path: "/signup",
           element: <Signup></Signup>,
+        },
+        {
+          path: "/faq",
+          element: <Faq></Faq>,
+        },
+        {
+          path: "/blog",
+          element: <Blog></Blog>,
         },
       ],
     },
