@@ -11,6 +11,7 @@ import Coursehomepage from "./component/CourseMainPage/Coursehomepage";
 import Specific from "./component/SpecificCourseDetails/Specific";
 import PremiumAccess from "./component/PremiumAccess/PremiumAccess";
 import PrivateRoute from "./component/PrvateRoute/PrivareRoute";
+import Error from "./component/Error/Error";
 
 function App() {
   const router = createBrowserRouter([
@@ -63,6 +64,10 @@ function App() {
         {
           path: "/blog",
           element: <Blog></Blog>,
+        },
+        {
+          path: "/*",
+          element: <Error></Error>,
         },
       ],
     },
