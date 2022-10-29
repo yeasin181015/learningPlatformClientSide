@@ -14,11 +14,9 @@ const Signup = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name);
 
     try {
       const user = await createUser(email, password);
-      console.log(user);
       setUserName(name);
       navigate("/login");
     } catch (error) {
@@ -55,6 +53,7 @@ const Signup = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -66,6 +65,7 @@ const Signup = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
+                required
               />
               <label className="label">
                 <Link

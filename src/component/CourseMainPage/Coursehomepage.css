@@ -1,0 +1,5 @@
+.course-home-page {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}

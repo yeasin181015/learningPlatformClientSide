@@ -2,12 +2,13 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./../../Contexts/AuthProvider";
 import Button from "react-bootstrap/Button";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
   const { signInUser, providerLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -18,7 +19,6 @@ const Login = () => {
 
     try {
       const user = await signInUser(email, password);
-      console.log(user);
       form.reset();
       navigate("/");
     } catch (error) {
@@ -29,10 +29,19 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       const gmailUser = await providerLogin(googleProvider);
-      console.log(gmailUser);
       navigate("/");
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleGithubSignIn = async () => {
+    try {
+      const githubUser = await providerLogin(githubProvider);
+      console.log(githubUser);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -54,6 +63,7 @@ const Login = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -65,18 +75,17 @@ const Login = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
+                required
               />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
             <Button variant="danger" onClick={handleGoogleSignIn}>
               Login with Google
+            </Button>
+            <Button variant="danger" onClick={handleGithubSignIn}>
+              Login with Github
             </Button>
           </form>
         </div>

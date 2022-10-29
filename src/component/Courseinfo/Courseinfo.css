@@ -1,0 +1,22 @@
+.courses-card {
+  display: flex;
+}
+.card-text {
+  text-align: left;
+}
+.cards {
+  width: 300px;
+  margin-right: 10px;
+}
+.card-img {
+  height: 200px;
+}
+@media only screen and (max-width: 768px) {
+  .courses-card {
+    flex-direction: column;
+  }
+  .cards {
+    width: 230px;
+    margin-bottom: 20px;
+  }
+}
