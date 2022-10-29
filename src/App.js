@@ -31,13 +31,17 @@ function App() {
               path: "/courses/info/:id",
               element: <Courseinfo></Courseinfo>,
               loader: ({ params }) =>
-                fetch(`http://localhost:5000/courses/info/${params.id}`),
+                fetch(
+                  `https://learning-platform-serverside.vercel.app/courses/info/${params.id}`
+                ),
             },
             {
               path: "/courses/specific/:id",
               element: <Specific></Specific>,
               loader: ({ params }) =>
-                fetch(`http://localhost:5000/courses/specific/${params.id}`),
+                fetch(
+                  `https://learning-platform-serverside.vercel.app/courses/specific/${params.id}`
+                ),
             },
           ],
         },
